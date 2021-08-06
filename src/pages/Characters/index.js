@@ -64,7 +64,7 @@ export default function Characters(){
     setFilterText(e);
 
     if(e !== '')
-      setCharacters(defCharacters.filter(character => character.name.includes(e.toLowerCase()) || character.name.includes(e.toUpperCase()))); 
+      setCharacters(defCharacters.filter(character => character.name.toLowerCase().includes(e.toLowerCase()))); 
     else      
       setCharacters(defCharacters.filter(character => character));
   }
