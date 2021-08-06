@@ -7,3 +7,4 @@ Tecnologias Utilizadas
 - React Native
 - Expo
 - Testing Library(Jest)
+- API https://swapi.dev/

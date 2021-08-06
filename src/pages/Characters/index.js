@@ -23,7 +23,7 @@ export default function Characters(){
   }
 
   const  loadCharacters = async () => {
-    if (loading)
+    if (loading || filterText !== '')
       return;    
 
     if (total > 0 && defCharacters.length === total)
@@ -42,6 +42,7 @@ export default function Characters(){
     catch(e){
       setError(true)
     }
+    
     setLoading(false)
   }
 
@@ -63,7 +64,7 @@ export default function Characters(){
     setFilterText(e);
 
     if(e !== '')
-      setCharacters(defCharacters.filter(character => character.name.includes(e) || character.name.includes(e.toUpperCase()))); 
+      setCharacters(defCharacters.filter(character => character.name.includes(e.toLowerCase()) || character.name.includes(e.toUpperCase()))); 
     else      
       setCharacters(defCharacters.filter(character => character));
   }
@@ -90,7 +91,7 @@ export default function Characters(){
         <TextInput style={styles.searchInput} value={filterText} onChangeText={text => searchCharacter(text)}/>
       </View>
 
-      {characters.length === 0 || error ?
+      {(characters.length === 0 || error) && !loading ?
         <Text style={styles.warn}>
           {error ?          
             `Houve um problema com a conexão, tente novamente mais tarde!`
